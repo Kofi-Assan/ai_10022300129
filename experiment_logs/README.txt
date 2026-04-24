@@ -1,4 +1,4 @@
-Name: Kofi Assan | Index: 10022300129 | CS4241
+Name: Kofi Assan | Index: 10022300129 | IT3241
 
 Use this folder for MANUAL experiment logs (not AI-generated summaries).
 For each run, create a dated file, e.g. 2026-04-17_run01.txt, and record:

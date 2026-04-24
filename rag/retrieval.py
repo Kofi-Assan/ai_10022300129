@@ -1,4 +1,4 @@
-# Name: Kofi Assan | Index: 10022300129 | CS4241-Introduction to Artificial Intelligence
+# Name: Kofi Assan | Index: 10022300129 | IT3241-Introduction to Artificial Intelligence
 """
 Top-k retrieval with cosine similarity (FAISS IP on normalized vectors)
 plus hybrid fusion with manual BM25 keyword scores.

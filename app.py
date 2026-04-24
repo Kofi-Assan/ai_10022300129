@@ -1,4 +1,4 @@
-# Name: Kofi Assan | Index: 10022300129 | CS4241-Introduction to Artificial Intelligence
+# Name: Kofi Assan | Index: 10022300129 | IT3241-Introduction to Artificial Intelligence
 """
 Streamlit UI: query, retrieved chunks, scores, final prompt, answer.
 Run from project root: streamlit run app.py
@@ -457,7 +457,7 @@ _FLOAT_DASH_HTML = (
 """
 )
 
-st.set_page_config(page_title="ACity RAG (CS4241)", layout="wide")
+st.set_page_config(page_title="ACity RAG (IT3241)", layout="wide")
 
 st.markdown(
     """
@@ -629,7 +629,7 @@ CHAT_STORAGE_JS = """
 
 st.html(CHAT_STORAGE_JS)
 st.title("Academic City RAG Assistant")
-st.caption("Kofi Assan · 10022300129 · CS4241 — manual RAG (no LangChain/LlamaIndex)")
+st.caption("Kofi Assan · 10022300129 · IT3241 — manual RAG (no LangChain/LlamaIndex)")
 components.html(_WAVE_BANNER_HTML, height=180, scrolling=False)
 
 if not (INDEX_DIR / "index.faiss").is_file():

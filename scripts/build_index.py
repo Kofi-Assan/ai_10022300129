@@ -1,4 +1,4 @@
-# Name: Kofi Assan | Index: 10022300129 | CS4241-Introduction to Artificial Intelligence
+# Name: Kofi Assan | Index: 10022300129 | IT3241-Introduction to Artificial Intelligence
 """Build FAISS index from downloaded CSV + PDF."""
 from __future__ import annotations
 
