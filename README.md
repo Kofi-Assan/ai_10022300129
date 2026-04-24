@@ -30,7 +30,7 @@ User query
 
 ## Setup
 
-1. **Python**: This repo deploys with `runtime.txt` (**3.11.9**). That file intentionally contains only the version string (no name/index line), because some hosts parse it strictly; **Name: Kofi Assan** and **Index: 10022300129** appear in `README.md`, source headers, and `render.yaml`.  
+1. **Python**: This repo uses `runtime.txt` (**3.11.9**) for deployment. That file intentionally contains only the version string (no name/index line), because some hosts parse it strictly; **Name: Kofi Assan** and **Index: 10022300129** appear in `README.md` and source headers.  
    - If you use **Python 3.13**, local `sentence-transformers` may not install (PyTorch support).  
    - The project therefore supports **OpenAI embeddings** as a fallback for building the index on any Python version.
 
@@ -75,24 +75,15 @@ Each build writes `data/index/build_config.json` capturing the chunking + embedd
 streamlit run app.py
 ```
 
-## Deploy on Render
+## Deploy on Streamlit
 
 1. Push this repo to GitHub (see submission repo name above).
-2. In [Render](https://render.com): **New** → **Blueprint** → connect the repository. Render reads `render.yaml` and creates the web service.
-3. In the service **Environment** tab, set either **GROQ_API_KEY** (if using Groq) or **OPENAI_API_KEY** (if using OpenAI). Optionally set **HF_TOKEN** if Hugging Face throttles the embedding model download during build.
-4. After deploy, copy the **public URL** for your exam email.
+2. Go to [Streamlit Community Cloud](https://share.streamlit.io/).
+3. Connect your GitHub repository and select this repo.
+4. In the deployment settings, set either **GROQ_API_KEY** (if using Groq) or **OPENAI_API_KEY** (if using OpenAI). Optionally set **HF_TOKEN** if Hugging Face throttles the embedding model download during build.
+5. After deploy, copy the **public URL** for your exam email.
 
-**Note on Render retrieval mode:** The `render.yaml` sets `FORCE_BM25_ONLY=1` for resource efficiency during free-tier builds. This means Render uses **BM25 keyword-only retrieval** instead of the full **hybrid** approach (vector + BM25) available locally. To use hybrid retrieval on Render, remove `FORCE_BM25_ONLY` from `render.yaml` and ensure vector embeddings are prebuilt (see below).
-
-The **build** step installs dependencies, downloads the CSV/PDF, and runs `scripts/build_index.py`. If the build exceeds Render’s time limit, build the index on your machine, then force-add the artifacts (they are gitignored by default):
-
-```bash
-git add -f data/index data/raw
-git commit -m "Add prebuilt index for Render"
-git push
-```
-
-Redeploy so the build can skip long work (you may shorten `buildCommand` in `render.yaml` to `pip install -r requirements.txt` only if both `data/raw` and `data/index` are committed).
+**Note on deployment:** For production deployment with proper chat history persistence, you'll want to add a database (like SQLite or PostgreSQL) since the current file-based approach won't work in a multi-user cloud environment.
 
 ## Chunking (Part A)
 
@@ -150,7 +141,7 @@ Outputs are written to `experiment_logs/auto_runs/`. You should still write your
 ## Submission (from question paper)
 
 - Push to GitHub: repo **`ai_10022300129`**.  
-- Deploy (this repo includes **Render** via `render.yaml`; or use Streamlit Cloud / Railway) and record the public URL.  
+- Deploy on Streamlit Community Cloud and record the public URL.  
 - Add **GodwinDansoAcity** / `godwin.danso@acity.edu.gh` as collaborator.  
 - Email the lecturer with subject: `CS4241-Introduction to Artificial Intelligence-2026:[your index and name]`.  
 - Include: repo link, deployed URL, **video walkthrough (≤2 min)**, **manual** experiment logs, and this documentation.
@@ -168,7 +159,6 @@ Outputs are written to `experiment_logs/auto_runs/`. You should still write your
 | `app.py` | Streamlit UI |
 | `scripts/download_data.py` | Fetch exam datasets |
 | `scripts/build_index.py` | Build `data/index/` |
-| `render.yaml` | Render Blueprint (build + start commands) |
-| `runtime.txt` | Python version for Render/native Python builds |
+| `runtime.txt` | Python version for deployment builds |
 
 Student name and index appear in the README and in each source file header as required.

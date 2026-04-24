@@ -627,7 +627,7 @@ CHAT_STORAGE_JS = """
 </script>
 """
 
-st.components.v1.html(CHAT_STORAGE_JS, height=0)
+st.html(CHAT_STORAGE_JS)
 st.title("Academic City RAG Assistant")
 st.caption("Kofi Assan · 10022300129 · CS4241 — manual RAG (no LangChain/LlamaIndex)")
 components.html(_WAVE_BANNER_HTML, height=180, scrolling=False)
@@ -669,7 +669,7 @@ with st.sidebar:
         window.clearChatHistory();
         </script>
         """
-        st.components.v1.html(clear_js, height=0)
+        st.html(clear_js)
         st.rerun()
     
     st.divider()
@@ -780,7 +780,7 @@ if st.button("Run RAG", type="primary") and query.strip():
     }})();
     </script>
     """
-    st.components.v1.html(save_history_js, height=0)
+    st.html(save_history_js)
 
     with st.expander("Retrieved chunks & scores"):
         for h in hits:
